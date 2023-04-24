@@ -19,7 +19,7 @@ const optionsApiArgentina = {
 
 export const getMatchesLeagues = async ( req,res ) => {
     try {
-        const { idLeague } = req.body;
+          const idLeague = req.body.idLeague;
     
          const reqApi = await fetch(`https://api.football-data.org/v4/competitions/${idLeague}/matches`, options)
          const resApi = [ await reqApi.json() ];
@@ -37,7 +37,7 @@ export const getMatchesLeagues = async ( req,res ) => {
 
 export const getMatchesLeaguesToday = async ( req,res ) => {
     try {
-        const { idLeague } = req.body;
+        const idLeague = req.body.idLeague;
             const connect = await fetch(`https://api.football-data.org/v4/competitions/${idLeague}/matches`,options)
             const resApi = [ await connect.json() ];
 
