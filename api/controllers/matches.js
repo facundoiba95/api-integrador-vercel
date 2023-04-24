@@ -19,7 +19,7 @@ const optionsApiArgentina = {
 
 export const getMatchesLeagues = async ( req,res ) => {
     try {
-          const ID = req.body.idLeague;
+        const { idLeague } = req.body;
          const reqApi = await fetch(`https://api.football-data.org/v4/competitions/${ID}/matches`, options)
          const resApi = [ await reqApi.json() ];
 
@@ -35,26 +35,24 @@ export const getMatchesLeagues = async ( req,res ) => {
 }
 
 export const getMatchesLeaguesToday = async ( req,res ) => {
-    const body = req.body
-    res.status(200).json({body})
-    // try {
-    //     const ID = req.body.idLeague;
-    //         const connect = await fetch(`https://api.football-data.org/v4/competitions/${ID}/matches`,options)
-    //         const resApi = [ await connect.json() ];
+    try {
+            const { idLeague } = req.body;
+            const connect = await fetch(`https://api.football-data.org/v4/competitions/${idLeague}/matches`,options)
+            const resApi = [ await connect.json() ];
 
-    //         const date = new Date().toISOString().slice(0,10);
+            const date = new Date().toISOString().slice(0,10);
             
-    //         const matches = resApi[0].matches.map(item => {
-    //             const localHour = `${item.utcDate.slice(11,13) - 3}${item.utcDate.slice(13,16)}` 
-    //             return { ... item, date: item.utcDate.slice(0,10), hour: localHour }
-    //         })
+            const matches = resApi[0].matches.map(item => {
+                const localHour = `${item.utcDate.slice(11,13) - 3}${item.utcDate.slice(13,16)}` 
+                return { ... item, date: item.utcDate.slice(0,10), hour: localHour }
+            })
 
-    //         const filterMatchesToday =  matches.filter(match => match.date === date);
-    //         res.status(200).json({filterMatchesToday})
-    // } catch (error) {
-    //     console.log(error);
-    //     res.json({error})
-    // }
+            const filterMatchesToday =  matches.filter(match => match.date === date);
+            res.status(200).json({filterMatchesToday})
+    } catch (error) {
+        console.log(error);
+        res.json({error})
+    }
 }
 
 export const getMatchesLeagueArgentina = async ( req,res ) => {
