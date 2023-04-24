@@ -35,7 +35,8 @@ export const getMatchesLeagues = async ( req,res ) => {
 }
 
 export const getMatchesLeaguesToday = async ( req,res ) => {
-    console.log(req.body);
+    const body = req.body
+    res.status(200).json({body})
     // try {
     //     const ID = req.body.idLeague;
     //         const connect = await fetch(`https://api.football-data.org/v4/competitions/${ID}/matches`,options)
