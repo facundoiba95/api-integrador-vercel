@@ -35,7 +35,7 @@ export const getMatchesLeagues = async ( req,res ) => {
 }
 
 export const getMatchesLeaguesToday = async ( req,res ) => {
-    const body = req
+    const body = req.body
     res.status(200).json({body})
     // try {
     //     const ID = req.body.idLeague;
