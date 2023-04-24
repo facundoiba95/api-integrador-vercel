@@ -1,4 +1,5 @@
 import { config } from 'dotenv';
+// import fetch from 'node-fetch'
 config();
 
 const options = {
@@ -18,9 +19,8 @@ const optionsApiArgentina = {
 
 export const getMatchesLeagues = async ( req,res ) => {
     try {
-          const idLeague = req.body.idLeague;
-          console.log(idLeague);
-         const reqApi = await fetch(`https://api.football-data.org/v4/competitions/${idLeague}/matches`, options)
+          const ID = req.body.idLeague;
+         const reqApi = await fetch(`https://api.football-data.org/v4/competitions/${ID}/matches`, options)
          const resApi = [ await reqApi.json() ];
 
          const matches = resApi[0].matches.map(item => {
@@ -36,9 +36,8 @@ export const getMatchesLeagues = async ( req,res ) => {
 
 export const getMatchesLeaguesToday = async ( req,res ) => {
     try {
-        const idLeague = req.body.idLeague;
-        console.log(idLeague);
-            const connect = await fetch(`https://api.football-data.org/v4/competitions/${idLeague}/matches`,options)
+        const ID = req.body.idLeague;
+            const connect = await fetch(`https://api.football-data.org/v4/competitions/${ID}/matches`,options)
             const resApi = [ await connect.json() ];
 
             const date = new Date().toISOString().slice(0,10);
