@@ -14,6 +14,6 @@ app.use(morgan('dev'));
 
 app.use('/api/leagues', leaguesRoutes);
 app.use('/api/matches', matchesRoutes);
-app.use('/api', indexRoutes);
+app.use('/api/index', indexRoutes);
 
 export default app;
