@@ -31,7 +31,7 @@ export const getMatchesLeagues = async ( req,res ) => {
          res.status(200).json({matches})
     } catch (error) {
         console.log(error);
-        res.json({message: error})
+        res.json({error})
     }
 }
 
@@ -53,7 +53,7 @@ export const getMatchesLeaguesToday = async ( req,res ) => {
             res.status(200).json({filterMatchesToday})
     } catch (error) {
         console.log(error);
-        res.json({message: error})
+        res.json({error})
     }
 }
 
