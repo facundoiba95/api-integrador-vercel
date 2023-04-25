@@ -1,26 +1,9 @@
-import { config } from 'dotenv';
-// import fetch from 'node-fetch'
-config();
-
-const options = {
-    method: "GET",
-    headers: {
-        'X-Auth-Token': process.env.API_KEY_FOOTBALLDATA,
-    },
-}
-
-const optionsApiArgentina = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': process.env.API_KEY_RAPIDAPI,
-		'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
-	}
-};
+import { options, optionsApiArgentina } from './libs.js';
 
 export const getMatchesLeagues = async ( req,res ) => {
     try {
-        const { idLeague } = req.body;
-         const reqApi = await fetch(`https://api.football-data.org/v4/competitions/${ID}/matches`, options)
+         const { idLeague } = req.body;
+         const reqApi = await fetch(`https://api.football-data.org/v4/competitions/${idLeague}/matches`, options)
          const resApi = [ await reqApi.json() ];
 
          const matches = resApi[0].matches.map(item => {
