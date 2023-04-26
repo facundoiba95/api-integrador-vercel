@@ -3,7 +3,7 @@ import { getScorersByLeagueArgentina, getScorersByLeagues } from "../controllers
 
 const router = Router();
 
-router.get('/getScorersByLeagues', getScorersByLeagues);
-router.get('/getScorersByLeagueArgentina', getScorersByLeagueArgentina )
+router.post('/getScorersByLeagues', getScorersByLeagues);
+router.post('/getScorersByLeagueArgentina', getScorersByLeagueArgentina )
 
 export default router;
