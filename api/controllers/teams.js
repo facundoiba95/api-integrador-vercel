@@ -1,8 +1,8 @@
-import { options } from "./libs.js";
+import { options, optionsApiArgentina } from "./libs.js";
 
 export const getTeamArgentina = async ( req,res ) => {
  try {
-    const reqApi = await fetch('https://api-football-v1.p.rapidapi.com/v3/teams?id=455')
+    const reqApi = await fetch('https://api-football-v1.p.rapidapi.com/v3/teams?id=455', optionsApiArgentina)
     const resApi = await reqApi.json();
     res.status(200).json(resApi);
  } catch (error) {
