@@ -9,7 +9,6 @@ const userModel = new Schema({
     imgUrl: String,
     password: String,
     email: String,
-    bets:[Object],
     points: Number,
 },{
     timestamps: true,

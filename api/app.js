@@ -14,6 +14,7 @@ import scorersRoutes from './routes/scorers.routes.js';
 import teamsRoutes from './routes/teams.routes.js';
 import indexRoutes from './routes/index.routes.js';
 import usersRoutes from './routes/users.routes.js';
+import betsRoutes from './routes/bets.routes.js';
 
 //   middlewares
 app.use(cors());
@@ -27,7 +28,8 @@ app.use('/api/matches', matchesRoutes);
 app.use('/api/scorers', scorersRoutes);
 app.use('/api/teams', teamsRoutes);
 app.use('/api/index', indexRoutes);
-app.use('/api/users', usersRoutes)
+app.use('/api/users', usersRoutes);
+app.use('/api/bets', betsRoutes);
 
 
 export default app;
