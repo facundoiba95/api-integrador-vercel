@@ -59,3 +59,12 @@ export const login = async ( req,res ) => {
     return res.status(400).json({error}) 
   }
 }
+
+export const getUsers = async ( req,res ) => {
+  try {
+    const foundUsers = await User.find();
+    res.status(200).json(foundUsers);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+}

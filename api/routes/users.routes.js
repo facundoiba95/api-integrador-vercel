@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUser, login } from "../controllers/users.controller.js";
+import { createUser, getUsers, login } from "../controllers/users.controller.js";
 import multer from "multer";
 import cloudinary from 'cloudinary';
 import path,{ dirname } from 'path'
@@ -40,6 +40,7 @@ const router = Router();
   
 router.post('/createUser',upload.single('imgUser'), createUser)
 router.post('/login', login)
+router.get('/getUsers', getUsers);
 
 
 export default router;

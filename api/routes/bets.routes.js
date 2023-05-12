@@ -5,6 +5,6 @@ import { verifyToken } from "../libs/AuthJwt.js";
 const router = Router();
 
 router.post('/sendBet', [ verifyToken ], sendBet);
-router.get('/getBets',getBets);
+router.get('/getBets', getBets);
 
 export default router;
