@@ -4,7 +4,9 @@ const betSchema = new Schema({
     user: [Object],
     match: [Object],
     status: String,
-    winner: String
+    winner: String,
+    checked: Boolean,
+    betHit:Boolean
 },
 {
     timestamps:true,
