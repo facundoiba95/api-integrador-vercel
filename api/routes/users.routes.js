@@ -20,10 +20,18 @@ cloudinary.config({
 //  config Multer
 const storage = multer.diskStorage({
     destination:(req,file,cb) => {
-    cb(null, file= path.join(__dirname,'public/imgs')) // guardar las imagenes en este directorio.
+      try {
+        cb(null, file= path.join(__dirname,'public/imgs')) // guardar las imagenes en este directorio.
+      } catch (error) {
+        console.log(error,'de multer destination');
+      }
   },
     filename:(req,file,cb) => {
-    cb(null,file.originalname); //Agregar extension de archivo de imagen.
+      try {
+        cb(null,file.originalname); //Agregar extension de archivo de imagen.
+      } catch (error) {
+        console.log(error, 'de multer filename');
+      }
   }
     });
   
