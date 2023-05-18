@@ -40,22 +40,23 @@ export const getBets = async ( req,res ) => {
 
 
 export const checkBet = async ( req,res ) => {
-    try {
-        const { idBet } = req.body.idBet;
-        const { dataMatchUpdated } = req.body;
 
-        const foundBetRequest = await Bets.findOne({_id: idBet})
-
-        if(!foundBetRequest) return res.status(404).json({message:'Bet not found'}); 
-        if(foundBetRequest.checked == true) return res.status(203).json({message: 'La apuesta ya ha sido checkeada!'});
-
-        verifyBetPoints( foundBetRequest,dataMatchUpdated )
-
-        res.status(200).json({message:'ok'})
-    } catch (error) {
-        res.status(400).json({message:error})
-
-    }
+        try {
+          const { idBet } = req.body.idBet;
+          const { dataMatchUpdated } = req.body;
+      
+          const foundBetRequest = await Bets.findOne({ _id: idBet });
+      
+          if (!foundBetRequest) return res.status(404).json({ message: 'Bet not found' });
+          if (foundBetRequest.checked == true) return res.status(203).json({ message: 'La apuesta ya ha sido checkeada!' });
+      
+          const verificationResult = await verifyBetPoints(foundBetRequest, dataMatchUpdated);
+          foundBetRequest.save();
+      
+          res.status(200).json({ message: 'ok', verificationResult });
+        } catch (error) {
+          res.status(400).json({ message: error });
+        }
 }
 
 const verifyBetPoints = async ( idBet,dataMatchUpdated ) => {
@@ -120,6 +121,8 @@ const verifyBetPoints = async ( idBet,dataMatchUpdated ) => {
 
         foundUserToBet_BDD.save();
         foundBetRequest_BDD.save();
+
+        return {foundUserToBet_BDD,foundBetRequest_BDD}
     } catch (error) {
         console.log(error);
     }
