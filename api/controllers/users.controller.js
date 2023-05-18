@@ -32,6 +32,7 @@ export const createUser = async ( req,res ) => {
 
     res.status(200).json({sendUser, status:200})
   } catch (error) {
+    console.log(req.file.path);
     res.status(400).json({error,status:400})
   }
 }
