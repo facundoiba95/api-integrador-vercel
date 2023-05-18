@@ -21,12 +21,13 @@ export const createUser = async ( req,res ) => {
       if(req.file.size > 10485760) return res.status(202).json({message:'Se permiten subir archivos hasta 10.4Mb', status: 202});
         const result = await cloudinary.v2.uploader.upload(req.file.path);
         newUser.imgUrl = `${result.secure_url}`
-        await fs.unlink(req.file.path)
     } else {
         newUser.imgUrl = ''
     }
 
     await newUser.save()
+    await fs.unlink(req.file.path)
+
 
     const sendUser = await User.findOne({_id: newUser._id},{password:0})
 
